@@ -1,4 +1,4 @@
-# RadPad- Under active development. After solving the final problem in this protocol, I submitted for auditing and found that I had failed terribly. Nonetheless, only the single problem remains and I am actively working toward an answer. There are fundamental differences to conventional cryptographic protocols both in application and purpose.
+# RadPad- Under continuing development.
 
 The RadPad attempt at a simple protocol for low-tech, future-proof, unbreakable encryption which relies heavily on the unknowability of the One Time Pad and uses Public Key Cryptrography (PKC) to allow infinite sustainability without ever meeting the other party.
 
