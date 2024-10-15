@@ -1,18 +1,20 @@
-#THIS IS NOT CURRENTLY FUNCTIONAL
-#RadPad protocol applied to a simple binary character space for easy processing
-#P=1+2 characters in a simple binary character space
-#R=any Primitive Root of P
-#Lowercase values must never be shared but capital values are safe to share
-#x represents the first party, y represents the second
-#x=Private, X=Public, sx=Shift. Same applies to y, Y, and sy
+#The RadPad relies not on the difficulty of computing the discrete logarithm but instead on the uncertainty of the information intercepted.
+#If every private key, public key, and calculated secret are uniformly distributed, we have a one-time pad which can be generated on the fly without meeting.
+#In the code below, a and b (private keys for both parties) distribute evenly. Distribution becomes uneven while generating public keys A and B. THIS IS THE FIRST PLACE TO FOCUS.
+#THE CRUX OF THE PROBLEM IS TO GENERATE ALL KEYS WITH UNIFORM OUTPUT THROUGH THE ENTIRE RANGE OF POSSIBLE INPUTS (which are every number from 1 through P).
 
-P= 3
-R= 2
-L= [P,P*2]
-for x in range(0,(P-1)):
-  for y in range(0,(P-1)):
-    X= R**x%P
-    Y= R**y%P
-    sx=((Y**x)%(P-1))
-    sy=((X**y)%(P-1))
-    print(sx,sy)
+#Lowercase values are private keys and must never be shared
+#Uppercase values are public keys and are safe to share
+#a represents the first party, b represents the second
+#a=Private, A=Public, sa=Shift (calculated secret). The same applies to b, B, and sb
+
+P= 3 #Any prime number equal to the desired number of characters used for messages. Adjust the character space until a suitable number is found
+R= 2 #Any primitive root of P
+#The for loops iterate through every possible a and b to make sure all combinations are tested
+for a in range(1,(P+1)): #Python starts with 0 but we want numbers from 1 through P so we shift evrything up by 1
+  for b in range(1,(P+1)): #Python starts with 0 but we want numbers from 1 through P so we shift evrything up by 1
+    A= (R**a)%P
+    B= (R**b)%P
+    sa=(B**a)%P
+    sb=(A**b)%P
+    print(sa, sb)
